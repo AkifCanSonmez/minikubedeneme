@@ -1,0 +1,22 @@
+apiVersion: machinelearning.seldon.io/v1alpha2
+kind: SeldonDeployment
+metadata:
+  name: tfserv
+spec:
+  name: mnist
+  predictors:
+  - graph:
+      children: []
+      implementation: TENSORFLOW_SERVER
+      modelUri: pvc://task-pv-claim/
+      name: tf-model
+      parameters:
+        - name: signature_name
+          type: STRING
+          value: predict_images
+        - name: model_name
+          type: STRING
+          value: mnist-model
+    name: default
+    replicas: 1
+

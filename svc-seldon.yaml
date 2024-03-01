@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: seldon-example-service
+  namespace: seldon-ns1  # Assuming your deployment is in the seldon-ns1 namespace
+spec:
+  selector:
+    app: seldon-example
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9000
+  type: NodePort  # or you can use LoadBalancer if supported by your Kubernetes setup
